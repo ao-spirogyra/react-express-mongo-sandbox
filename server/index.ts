@@ -1,5 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import bodyParser from 'body-parser'
+
 const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : '' 
 mongoose.connect(mongooseConnectString, {
   useNewUrlParser: true,
@@ -12,10 +14,9 @@ const app = express()
 const port = 3000
 const host = '0.0.0.0'
 
-
-app.get('/', (_req, res) => {
-  const data = { message: 'Hello' }
-  res.send(data)
+app.use(bodyParser.json())
+app.get('/api', (_req, res) => {
+  res.status(201).json({ message: 'Hello' })
 })
 
 app.listen(port, host, () => {
