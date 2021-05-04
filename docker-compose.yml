@@ -6,7 +6,7 @@ services:
       target: development
     volumes:
       - .:/app
-    command: bash -c "npm run start:client"
+    command: bash -c "npm run start:client:development"
     ports:
       - "8080:8080"
     environment:
