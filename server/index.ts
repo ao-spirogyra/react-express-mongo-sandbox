@@ -6,7 +6,7 @@ mongoose.connect(mongooseConnectString, {
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true,
-  dbName: 'futsukazuki'
+  dbName: 'react-express-mongo-sandbox'
 })
 const app = express()
 const port = 3000
