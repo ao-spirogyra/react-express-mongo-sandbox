@@ -1,0 +1,9 @@
+{
+  "restartable": "rs",
+    "env": {
+      "NODE_ENV": "development"
+    },
+  "ext": "ts",
+  "watch": ["server/**/*.ts"],
+  "exec": "npm run ts-node ./server/index.ts"
+}
