@@ -7,9 +7,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:client:production && npm run build:server:production",
     "build:client:development": "webpack",
     "build:client:production": "webpack --mode=production",
-    "build:server:production": "tsc server/index.ts || exit 0",
+    "build:server:production": "tsc",
     "start:development": "npm-run-all start:client start:server:development",
     "start:client:development": "webpack serve",
     "start:server:development": "nodemon -L",
