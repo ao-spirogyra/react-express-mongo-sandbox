@@ -15,6 +15,7 @@ export const App: React.FC = () => {
     get();
   }, []);
   console.log(response)
+  console.log(process.env.NODE_ENV)
   return (
     <>
       <h1>Hello Typescript-React!</h1>

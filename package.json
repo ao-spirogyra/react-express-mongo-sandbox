@@ -7,6 +7,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:client:production && npm run build:server:production",
     "build:client:development": "webpack",
     "build:client:production": "webpack --mode=production",
     "build:server:production": "tsc server/index.ts || exit 0",
