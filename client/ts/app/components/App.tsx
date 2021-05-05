@@ -13,6 +13,7 @@ export const App: React.FC = () => {
       setResponse(await res.json());
     };
     get();
+    console.log(response)
   }, []);
   return (
     <>
