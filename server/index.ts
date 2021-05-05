@@ -1,6 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
+import path from 'path'
 
 const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : '' 
 mongoose.connect(mongooseConnectString, {
@@ -18,6 +19,13 @@ app.use(bodyParser.json())
 app.get('/api', (_req, res) => {
   res.status(201).json({ message: 'Hello' })
 })
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'dist')));
+  app.get('/', function(_req, res) {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+}
 
 app.listen(port, host, () => {
   console.log(`server listening on ${host}:${port}`)
