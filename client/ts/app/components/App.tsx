@@ -13,8 +13,8 @@ export const App: React.FC = () => {
       setResponse(await res.json());
     };
     get();
-    console.log(response)
   }, []);
+  console.log(response)
   return (
     <>
       <h1>Hello Typescript-React!</h1>
