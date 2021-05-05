@@ -3,7 +3,7 @@ import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import path from 'path'
 
-const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : '' 
+const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : process.env.MONGOOSE_CONNECT_STRING!
 mongoose.connect(mongooseConnectString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -12,7 +12,7 @@ mongoose.connect(mongooseConnectString, {
   dbName: 'react-express-mongo-sandbox'
 })
 const app = express()
-const port = 3000
+const port = Number(process.env.PORT) || 3000
 const host = '0.0.0.0'
 
 app.use(bodyParser.json())
