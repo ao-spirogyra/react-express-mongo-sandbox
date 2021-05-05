@@ -4,7 +4,7 @@ export const App: React.FC = () => {
   const [response, setResponse] = useState<Response>();
   useEffect(() => {
     const get = async () => {
-      const res = await fetch('/api', {
+      const res = await fetch('/api/users', {
         headers:{
           "accepts":"application/json"
         }
