@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import path from 'path'
+import {userRouter} from './routes/userRouter'
 
 const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : process.env.MONGOOSE_CONNECT_STRING!
 mongoose.connect(mongooseConnectString, {
@@ -16,9 +17,12 @@ const port = Number(process.env.PORT) || 3000
 const host = '0.0.0.0'
 
 app.use(bodyParser.json())
-app.get('/api', (_req, res) => {
-  res.status(201).json({ message: 'Hello' })
-})
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//api
+app.use('/api/users', userRouter);
+
+
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../dist')));
