@@ -18,6 +18,15 @@ export const App: React.FC = () => {
   return (
     <>
       <h1>Hello Typescript-React!</h1>
+      <form action="/api/images" method="POST" encType="multipart/form-data">
+        <div>
+          <label htmlFor="image">画像をアップロード</label>
+          <input type="file" id="image" name="image" defaultValue="" required></input>
+        </div>
+        <div>
+          <button type="submit">Submit</button>
+        </div>
+    </form>
     </>
   );
 }
