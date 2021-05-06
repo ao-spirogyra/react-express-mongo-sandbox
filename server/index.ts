@@ -2,7 +2,9 @@ import express from 'express'
 import mongoose from 'mongoose'
 import bodyParser from 'body-parser'
 import path from 'path'
-import {userRouter} from './routes/userRouter'
+import { userRouter } from './routes/userRouter'
+import { imageRouter } from './routes/imageRouter'
+import multer from 'multer'
 
 const mongooseConnectString = process.env.NODE_ENV === 'development' ? 'mongodb://db:27017' : process.env.MONGOOSE_CONNECT_STRING!
 mongoose.connect(mongooseConnectString, {
@@ -19,9 +21,11 @@ const host = '0.0.0.0'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const upload = multer({ dest: 'uploads/' })
+
 //api
 app.use('/api/users', userRouter);
-
+app.use('/api/images', upload.single('image'), imageRouter);
 
 
 if (process.env.NODE_ENV === 'production') {
