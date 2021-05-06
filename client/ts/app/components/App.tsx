@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
  
 export const App: React.FC = () => {
-  const [response, setResponse] = useState<Response>();
+  const [response, setResponse] = useState<{_id: string,data: {type: string, data: SharedArrayBuffer}}[]>();
   useEffect(() => {
     const get = async () => {
-      const res = await fetch('/api/users', {
+      const res = await fetch('/api/images', {
         headers:{
           "accepts":"application/json"
         }
@@ -17,6 +17,21 @@ export const App: React.FC = () => {
   console.log(response)
   return (
     <>
+      {
+        response?.map((eachImage) => {
+          function arrayBufferToBase64( buffer ) {
+            var binary = '';
+            var bytes = new Uint8Array( buffer );
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+              binary += String.fromCharCode( bytes[ i ]! );
+            }
+            return window.btoa( binary );
+          }
+          const src = "data:image/png;base64," + arrayBufferToBase64(eachImage.data.data)
+          return <img src={src} key={eachImage._id}></img>
+        })
+      }
       <h1>Hello Typescript-React!</h1>
       <form action="/api/images" method="POST" encType="multipart/form-data">
         <div>
@@ -26,7 +41,7 @@ export const App: React.FC = () => {
         <div>
           <button type="submit">Submit</button>
         </div>
-    </form>
+      </form>
     </>
   );
 }
