@@ -15,7 +15,7 @@ export const createUser = (req, res) => {
 
 export const showAllUser = async (_req, res) => {
   const users = await User.find()
-  return res.json({users: users})
+  return res.json(users)
 };
 
 export const deleteUser = async (req, res) => {
