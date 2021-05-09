@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { uploadImage, showAllImages } from '../controllers/imagesController';
+import { uploadImage, showAllImages, deleteImage } from '../controllers/imagesController';
 
 
 const imageRouter = Router();
@@ -7,4 +7,5 @@ const imageRouter = Router();
 
 imageRouter.post('/', uploadImage);
 imageRouter.get('/', showAllImages);
+imageRouter.delete('/:id', deleteImage)
 export {imageRouter}
