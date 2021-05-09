@@ -15,6 +15,14 @@ export const App: React.FC = () => {
     get();
   }, []);
   console.log(response)
+  const deleteImage = (id) => {
+    fetch(`/api/images/${id}`, {
+      method: 'DELETE'
+    }).then(() => {
+      window.location.reload()
+    })
+
+  }
   return (
     <>
       {
@@ -29,7 +37,12 @@ export const App: React.FC = () => {
             return window.btoa( binary );
           }
           const src = "data:image/png;base64," + arrayBufferToBase64(eachImage.data.data)
-          return <img src={src} key={eachImage._id}></img>
+          return (
+            <>
+              <img src={src} key={eachImage._id}></img>
+              <button key={eachImage._id+'button'} onClick={() => {deleteImage(eachImage._id)}}>delete</button>
+            </>
+          )
         })
       }
       <h1>Hello Typescript-React!</h1>

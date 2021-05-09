@@ -21,3 +21,9 @@ export const showAllImages = async (_req, res) => {
   const images = await Image.find()
   return res.json(images)
 }
+
+export const deleteImage = async (req, res) => {
+  const image = await Image.findOne({_id: req.params.id})
+  image?.deleteOne();
+  return res.json({message: 'deleted sucessfully'})
+}
