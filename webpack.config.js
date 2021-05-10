@@ -1,8 +1,6 @@
 const path = require("path");
  
 module.exports = {
-  // モードを開発モードにする
-  mode: "development",
   // 入力ファイル設定
   entry: [path.resolve(__dirname, "./client/ts/app/index.tsx")],
   // 出力ファイル設定
