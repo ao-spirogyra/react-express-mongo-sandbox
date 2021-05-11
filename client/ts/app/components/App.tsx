@@ -3,6 +3,7 @@ import { Counter } from './Counter'
  
 export const App: React.FC = () => {
   const [response, setResponse] = useState<{_id: string,data: {type: string, data: SharedArrayBuffer}}[]>();
+  const [count, setCount] = useState<{count: number}>();
   useEffect(() => {
     const get = async () => {
       const res = await fetch('/api/images', {
@@ -12,6 +13,8 @@ export const App: React.FC = () => {
       }
       );
       setResponse(await res.json());
+      const countResponse = await fetch('/api/images/count')
+      setCount(await countResponse.json())
     };
     get();
   }, []);
@@ -26,6 +29,9 @@ export const App: React.FC = () => {
   }
   return (
     <>
+     <div>
+        {count?.count}
+     </div>
      <Counter/>
       {
         response?.map((eachImage) => {

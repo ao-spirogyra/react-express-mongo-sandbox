@@ -27,3 +27,9 @@ export const deleteImage = async (req, res) => {
   image?.deleteOne();
   return res.json({message: 'deleted sucessfully'})
 }
+
+export const countImages =  async (_req, res) => {
+  const images = await Image.find();
+  const count = images.length
+  return res.json({count: count})
+}
