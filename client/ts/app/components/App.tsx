@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Counter } from './Counter'
  
 export const App: React.FC = () => {
-  const [response, setResponse] = useState<{_id: string,data: {type: string, data: SharedArrayBuffer}}[]>();
+  const [response, setResponse] = useState<{_id: string,comment: string,data: {type: string, data: SharedArrayBuffer}}[]>();
   const [count, setCount] = useState<{count: number}>();
   useEffect(() => {
     const get = async () => {
@@ -49,6 +49,13 @@ export const App: React.FC = () => {
             <>
               <img src={src} key={eachImage._id}></img>
               <button key={eachImage._id+'button'} onClick={() => {deleteImage(eachImage._id)}}>delete</button>
+              <form action={`/api/images/${eachImage._id}`} method="post" onSubmit={()=>{return false}}>
+               <input name="comment"type="text"></input>
+               <button type="submit">写真で一言！</button>
+              </form>
+              <div>
+                {eachImage.comment}
+              </div>
             </>
           )
         })
