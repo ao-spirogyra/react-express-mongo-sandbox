@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Counter } from './Counter'
  
 export const App: React.FC = () => {
   const [response, setResponse] = useState<{_id: string,data: {type: string, data: SharedArrayBuffer}}[]>();
@@ -25,6 +26,7 @@ export const App: React.FC = () => {
   }
   return (
     <>
+     <Counter/>
       {
         response?.map((eachImage) => {
           function arrayBufferToBase64( buffer ) {
