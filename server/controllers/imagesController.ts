@@ -17,6 +17,11 @@ export const uploadImage = (req,res) => {
   });
 }
 
+export const addComment = async(req,res) => {
+  await Image.findOneAndUpdate({_id:req.params.id},{comment:req.body.comment});
+  return res.json({massage: 'いいね！'})
+
+}
 export const showAllImages = async (_req, res) => {
   const images = await Image.find()
   return res.json(images)
